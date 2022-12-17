@@ -15,7 +15,9 @@ class RegularFigure{
     private float alpha = 0;
     private float alphaVelocity;
 
-    RegularFigure(int numOfSides, int diameterInscribedCircle, float alphaVelocity) {
+    private color colore;
+
+    RegularFigure(int numOfSides, int diameterInscribedCircle, float alphaVelocity, color colore) {
     
         this.numOfSides = numOfSides;
         // this.diameterCircumscribedCircle = diameterCircumscribedCircle;
@@ -24,6 +26,8 @@ class RegularFigure{
         this.radiusInscribedCircle = this.diameterInscribedCircle / 2;
 
         this.alphaVelocity = alphaVelocity;
+
+        this.colore = colore;
 
         points = new PVector[numOfSides];
         touchingPoints = new PVector[numOfSides];
@@ -52,13 +56,13 @@ class RegularFigure{
         noFill();
         stroke(255);
 
-        stroke(0, 255, 0, 100);
-        // circle(0, 0, this.diameterInscribedCircle);
+        stroke(Options.inscribedCirclesColor, Options.inscribedCirclesAlpha);
+        if (Options.showInscribedCircles) circle(0, 0, this.diameterInscribedCircle);
         
         for (int i = 0; i < this.numOfSides; ++i) {
             strokeWeight(2);
             // stroke(0, 255, 0);
-            stroke(Options.figuresColor);
+            stroke(this.colore);
             PVector pointRotated = rotatePoint(points[i]);
             PVector secondPointRotated = rotatePoint(points[(i+1) % this.numOfSides]);
             line(pointRotated.x, pointRotated.y, 
