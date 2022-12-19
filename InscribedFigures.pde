@@ -22,7 +22,7 @@ RegularFigure []figures;
 
 void setup () {
   
-    size(800, 800);
+    //size(800, 800);
     fullScreen();
     translate(width/2, height/2);
     // rotate(-PI / 2);
